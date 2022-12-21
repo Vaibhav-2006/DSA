@@ -1,0 +1,59 @@
+char str[]="gfg";
+cout<<str;//prints gfg as compiler automatically null terminates the string.
+
+char str[6]="gfg";
+in this since size is 6 the string will be stored as g f g \0 \0 \0
+
+Also char str[]={'g', 'f', 'g'};
+cout<<str;// might print gfg or might give segmentation fault as compiler does not put \0. 
+
+char str[5];
+str="gfg"; // gives an error as str is an address of str[0] and "gfg" is stored in memory 
+at some address. so we are assigning address to address which is wrong like int cant be assigned
+to int 100=200.
+The correct way is to use strcpy. In short, ALWAYS USE C++ STRINGS.
+They are much easier to use with rich library functions, work with operator like + = == <= >= etc.
+We can have empty strings also and then assign them later. In C we need to use strcpy and have
+to worry about null termination. Also we dont need to worry about size. The differences are
+similar to vector vs int. Also C++ strings can easily be converted to c strings using c_str function.
+ 
+
+1) The set of characters supported by a programming language is called character set.
+2) Every character has a numeric value or numeric code. Every electronic machine 
+has the same numeric code for a given character. These standard codes are called
+ASCII codes. These codes are given by ANSI.
+You should remember the aSCII codes for a,b,c... A,B,C .... 0,1,2... and
+ENTER(10), space(32), esc(27).
+There are total 128 characters in ascii table(0-127) so 7 bits are required to store
+an ascii character but since memory is allocated in terms of bytes, a char is allocated
+1 byte in memory.
+Ascii codes are a subset of unicodes. ASCII only supports english language but unicode
+supports all languages and takes 2 bytes of memory. Unicode is represented in hexadecimal
+In C or C++ strings stored in char arrays are null terminated('\0'). \0 is called 
+null character or string delimiter or end of the string character.
+
+Important:char[] doesn't have to be NULL terminated. It's a convention used when you 
+want to use char arrays as strings. You can use a char[] for your own purposes without 
+any terminator. So strings stored in char arrays are null terminated.
+Also the functions for strings in C library depend on this null character.
+
+char *name="Vaibhav" is created in heap.
+the pointer name will be available in stack but "Vaibhav\0" will be present in heap
+and name will be pointing to it from stack.
+
+printf("%s",name) will print name till \0 is reached.
+
+char a[] strings are mutable but char *a strings are not.
+
+Checking whether a bit in memory is on/off is called masking. Done using bitwise &.
+if x=16 then x in binary is 10000. Now lets check if 3rd bit from right is on or off.
+Let a=1 then a in binary is 00001. left Shift a by 2. So a becomes 00100.
+Now use a=x&a=00000 since a is zero the bit is off.
+
+Setting a bit on/off is called merging. Done using bitwise OR
+Same as above just use bitwise OR to set a bit ON/OFF.
+Anagrams are two strings which are formed with the same letters. example decimal,medical
+
+All possible permutations of a tree can be found using a state space tree.
+Backtracking is the method used to find all permutations.
+Backtracking is used to achieve brute force.

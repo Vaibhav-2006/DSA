@@ -1,0 +1,20 @@
+AVL trees are height balanced binary search trees where height is balanced 
+using balance factor.
+1)balance factor= height(left subtree)-height(right subtree)
+2)if mod(balance factor)<=1 then node is balanced , else if it is >1 node is unbalanced.
+3)Rotation is done on 3 nodes only.
+4) LL nd RR rotations are single rotations while LR nd RL rotations are double rotations.
+5) AVL trees are named after their inventors Adelson-Velskii and Landis.
+6) Balance factor can never be >2 or <-2.
+7) Searching in AVL tree(height balanced binary search tree) is O(log n) in worst case.
+8) Maximum comparisons in searching is h+1 if height is 0 based and h if height is 1 based.
+9) For height h the max nodes are 2^(h+1)-1 or 2^h -1 if height is 1 based and min nodes
+are N(h)= N(h-1)+N(h-2)+1.
+10)For n nodes the minimum height is log(base 2)(n+1) -1 or log(base 2)(n+1) if 
+height is 1 based and max height is found by making a table of h vs N(h) where 
+N(h) is minimum number of nodes at height h. Max 0 based height can also be found 
+approximately using 1.44*log(base 2)( n)[ can give wrong ans].
+11) Both the minimum and maximum height of an AVL tree are log based.
+12) Fibonacci series is a balanced series where the ratio of (i+1)th term and ith term
+is approx 1.6. The formula for N(h) in point 9 also resembles Fibonacci series
+so we conclude that AVL trees are balanced trees.

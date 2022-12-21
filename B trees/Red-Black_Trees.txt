@@ -1,0 +1,15 @@
+1) It is a height balanced binary search tree similar to 2-3-4 tree.
+2) Every node is either red or black.
+3) Root and nulls are taken as black.
+4) Number of blacks on paths from red to leaf are same.
+5) No two consecutive red nodes, meaning if there is a red node then its parent and
+children are black nodes.
+6) New inserted node is red.
+7) Height is log n<=h<=2log n.
+8) If after insertng a new node A(red), the parent and uncle(sibling of parent) are 
+also red then make them black and make the grandparent red and if the grandparent is the
+root then make it black. This way the newly inserted node remains red. This approach is
+called recolouring.
+9) If after insertng a new node A(red), the parent is red and uncle(sibling of parent)
+is black then perform rotation(LL and RR rotation are called zig-zig, LR and RL rotation
+are called zig-zag rotation). 

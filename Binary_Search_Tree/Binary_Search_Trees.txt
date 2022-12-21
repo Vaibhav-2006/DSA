@@ -1,0 +1,25 @@
+Definition:It is a binary tree in which for every node all the elements in the left
+subtree are smaller than that node and all the elements in the right subtree are greater
+than that.
+It is a linked data structure and hence is not cache friendly.
+1)Binary search trees do not have duplicates.
+2)Inorder traversal of a BST gives nodes in ascending order.
+3) If n nodes are given then catalan number of binary search trees can be made.
+4) In a binary search tree the number of comparisons done to find a key is dependent
+on height of tree. Worst case time complexity is O(n)[skewed tree] while average case
+is O(log n).
+5)We should not insert duplicates in a BST. example if 30 is present in BST then
+do not insert it.
+6) Binary Search Tree should be created using Insert function.Inserting a node takes O(logn)
+time and inserting n nodes to create a binary search tree takes O(n logn) time.
+7) A binary search tree can even be produced if only preorder/postorder traversal is given 
+as we can find the inorder traversal by writng the elements in ascending order.
+But without even using the inorder traversal we can generate a BST using its definition.
+8) Generating a binary tree from preorder/postorder takes O(n) time.
+9)Height of a binary search tree is dependent on order of insertion. example:
+40,20,30,60,50,10,70 generates a tree of height 2 nd 10,20,30,40,50,60,70
+generates a tree of height 6.
+10) Using n keys to create a labelled binary tree n! * (2n)^Cn/(n+1) trees can be made
+but since a binary search tree has a fixed way in which elements can appear(root of a
+subtree > node at left and < node at right) therefore only (2n)^Cn/(n+1) number of
+binary search trees can be made.

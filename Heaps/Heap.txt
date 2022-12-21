@@ -1,0 +1,24 @@
+1) It is a complete binary tree which means when it is represented in an array 
+then there should be no blank spaces in between.
+2) If node is at i then left child is at 2*i and right child is at 2*i+1( 1 based index).
+3) Binary heaps are usually represented as an array.
+4) Value of a node should be greater than or equal to its descendents in a max heap.
+5) Duplicates are allowed unlike binary search trees.
+6) Since heap is a complete binary tree its height does not increase unnecessarily. 
+its height is always O(log n).
+7) Insertion in heap takes O(log n) time.
+8) No extra array is used to create a heap, within a single array we can create a heap
+by inserting elements one by one. Heap is thus created in-place.
+9) Creating a heap takes O(n*log n) time.
+10) In heap you can only delete root so that it remains a complete tree.
+11) Deletion of a single element takes O(log n) time.
+12) Deletion of all elements and placing the deleted element at the end of heap is 
+heapsort and it takes O(n*log n) time.
+13) Heapify is a fast method for generating a heap which takes O(n) time.
+14) In a Priority queue elements are deleted based on their priority value.
+Highest priority element is deleted first.
+15) Priority queue implemented as an array will take Insert O(1) time and 
+delete O(n) time bcoz you have to find the max element and do shifting of elements
+accordingly. Priority queue implemented as a binary heap takes O(log n) time both 
+for insertion and deletion. So heap is the best suitable data structure for implementing 
+priority queue.

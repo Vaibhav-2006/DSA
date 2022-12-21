@@ -1,0 +1,63 @@
+Special Matrices
+They are all square matrices and have most elements equal to zero.
+1)Diagonal Matrices
+All the elements other than the diagonal elements must be zero.
+Therefore a diagonal matrix is defined as M[i][j]=0 if i is not equal to j.
+Storing a diagonal matrix as a 2-D array wastes memory as most of the elements are 
+zero. Also the processing will be slow. So the idea is to store only non-zero elements
+in a 1-D array. There are total n elements in the array if the order of the matrix is n.
+2)Lower triangular Matrix
+It is a square matrix in which the lower triangular part of the matrix is non zero
+and the upper triangular part is zero. It is defined as M[i][j]=0 if i<j.
+Also M[i][j] is non zero if i>=j. Suppose the order of the square matrix is n then
+total number of non zero elements will be 1+2+3+...n= n(n+1)/2. Total number of 
+elements = n^2. so no. of zero elements is n^2-n(n+1)/2 or n(n-1)/2
+Again to store such a matrix we need not store the zero elements to save memory and
+improve processing efficiency. 
+3)Upper triangular Matrix
+It is a square matrix in which the upper triangular part of the matrix is non zero
+and the lower triangular part is zero. It is defined as M[i][j]=0 if i>j.
+Also M[i][j] is non zero if i<=j. Suppose the order of the square matrix is n then
+total number of non zero elements will be n+n-1+n-2+...2+1= n(n+1)/2. Total number of 
+elements = n^2. so no. of zero elements is n^2-n(n+1)/2 or n(n-1)/2.
+Again to store such a matrix we need not store the zero elements to save memory and
+improve processing efficiency. 
+4)Symmetric Matrix
+It is defined as a square matrix in which the elements at A[i][j] and A[j][i]
+are equal. Therefore the matrix itself is equal to its transpose.
+Therefore if we know the value of A[1][4] we also know the value of A[4][1].
+So we need not store a large array instead we can either store the lower triangular
+matrix or the upper triangular matrix. 
+5)Tridiagonal or tri-band Matrix
+It is a square matrix in which the non zero elements are present in 3 diagonals. The
+3 diagonals are the main diagonal and the diagonals above and below the main diagonal.
+The elements in the main diagonal satisfy the relation i=j or i-j=0. The elements
+in the lower diagonal satisfy the relation i-j=1. The elements in the upper diagonal
+satisfy the relation i-j=-1. All other elements are zero.
+Therefore this matrix is represented as M[i][j]= non zero if mod(i-j)<=1 and
+M[i][j]=0 if mod(i-j)>1.
+If there is a matrix of order n then:
+The number of elements in the main diagonal is n and the number of elements in the
+lower and upper diagonal is n-1 each. Therefore the total no. of elements is 3n-2.
+
+6)Square Band Matrix
+It is similar to a tri diagonal matrix. The non zero elements are present
+in a main diagonal and many diagonals above and below the main diagonal. The number 
+of diagonals above and below the main diagonal remain equal and a relation is found out
+for the 1-D mapping of the band matrix. All the other elements are zero.
+7)Toeplitz Matrix
+In this array all the elements in any diagonal are same. 
+For example:
+2 3 4 5 6
+7 2 3 4 5 
+8 7 2 3 4
+9 8 7 2 3
+1 9 8 7 2 
+It is represented as a matrix which follows the relation:
+M[i][j]=M[i-1][j-1]
+In this matrix we do not have to store all the elements but only the first row and the
+first column in an array of size n+n-1.
+The first row contains all the elements of the upper triangle and the first column
+contains all the elements of the lower triangle.
+8)Sparse Matrix
+

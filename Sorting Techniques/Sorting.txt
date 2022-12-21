@@ -1,0 +1,206 @@
+Sort in STL
+It is used to sort elements in containers that allow random access.Example:arrays,vectors,
+deque. std::sort receives two addresses or iterators. In case of array address of 
+first element and the address following the last element. 
+arr[]=5,20,7,10 is sorted using sort(arr,arr+n).
+For vector we can use sort(vector.begin(),vector.end), here end() function returns an iterator
+pointing to an element beyond the end of the vector(outside the vector).
+It is defined in #include<algorithm>. 
+For descending order we use sort(arr, arr+n, greater<int>).
+Sort function by default uses quicksort. But it is actually a hybrid of quicksort, heap sort
+and insertion sort. In case quicksort does not partition properly and takes more time than
+O(n*logn) time then it switches to heap sort. And if array size becomes really small it 
+switches to insertion sort. std::sort function takes O(n*logn) time. This hybrid is called
+intro sort so we say std::sort uses intro sort.
+
+Criteria for Analysis of sorting techniques:
+1) Number of comparisons
+2) Number of swaps
+3) Adaptive
+4) Stable
+5) Extra Memory 
+
+Time complexity of any sorting algorithm is given based on number of comparisons.
+
+If a sorting algorithm is preserving the order of duplicate elements in the sorted
+list then that algorithm is stable. 
+Stable soring techniques are commonly used in databases.
+Comparison base sorts: bubble sort, insertion sort, selection sort, heap sort, 
+merge sort, quick sort, tree sort, shell sort.
+index based sorts: count sort, bucket/bin sort, radix sort.
+
+Bubble sort:
+If the elements are not in the right order, then swap. In each pass one element is sorted.
+If there are n elements then,
+Number of passes= n-1
+Number of comparisons= 1+2+3+...n-1= n(n-1)/2=O(n^2)
+Max number of swaps= 1+2+3+...n-1= n(n-1)/2=O(n^2)
+Time complexity= O(n^2) (worst case)
+best case time complexity O(n).
+Bubble sort is easily made adaptive using a flag variable. So it is considered
+to be an adaptive sorting technique.
+By itself without a flag variable it is not adaptive. So ignore implementations
+that do not check if list is already sorted at every step.
+Bubble sort is stable and in place.
+Bubble sort is not suitable for linked lists.
+
+Insertion sort:
+Insertion of a new element in an already sorted array or linked list can be done
+easily using insertion sort.
+Insertion in an already sorted array can take O(n) time due to shifting of elements but
+may take O(1) time if no shifting is required. Same is the case in a linked list where
+traversing may be required to find the position of insertion.
+In insertion sort we insert an element in an already sorted array.
+A[]={9,5,4,7}
+Here the array {9} is already sorted so 5 will now be inserted in it.
+Number of passes= n-1 for n elements
+Max Number of comparisons= 1+2+3+...n-1= n(n-1)/2=O(n^2)
+Max number of swaps= 1+2+3+...n-1= n(n-1)/2=O(n^2)
+In bubble sort when we perform 1 pass we get the largest element which is not true
+for insertion sort where we get one more element in our already sorted array. 
+So intermediate results in insertion sort are not useful whereas in bubble sort
+are useful where we can display n largest numbers in n passes.
+Insertion sort is much useful for linked lists where no shifting of elements is 
+required.
+Insertion sort takes O(n) time in best case and there are 0 swaps done.
+Time complexity= O(n^2) and number of swaps are also O(n^2) (worst case)
+best case time complexity O(n) and number of swaps are 0 which is O(1).
+So it takes minimum time if list is already sorted and therefore it is adaptive in nature
+without even using a flag variable as in bubble sort.
+Insertion sort is stable and in place.
+Only insertion sort and bubble sort are adaptive while only insertion sort
+bubble sort and merge sort are stable.
+
+Selection sort:
+In selection sort a position is first selected and the minimum element is brought there.
+In each pass we get the smallest element, so intermediate results are useful to get
+K smallest elements. For n elements there are n-1 passes.
+Number of comparisons= 1+2+3+...n-1= n(n-1)/2=O(n^2)
+Number of swaps= O(n), swap only takes place once(or zero times if element at selected
+position is already the smallest)for each iteration. Max swaps= n-1=O(n).
+Selection sort is not adaptive and even if list is sorted it will take O(n^2) time.
+Selection sort is not even stable.
+Selection sort is in place.
+Advantage of selection sort is that it uses minimum swaps O(n).
+Selection sort performs less memory writes compared to other popular sorting algos.
+Although it is still not optimal in terms of memory writes as cycle sort is better.
+Memory write can be costly in situations like EEPROM as in EEPROM if we do more writes then
+age of this memory reduces so in those cases we may prefer selection sort.
+Heapsort is based on selection sort.
+
+Quicksort
+it works on the idea that an element is in a sorted position if all the elements to 
+its left are smaller than it and all the elements to its right are greater than it.
+It does not matter if the elements to the left or right are themselves sorted.
+Only the pivot element should be in the right position.
+The pivot element is stored at the partitioning position(not true in Hoare's partitioning)
+To perform quicksort minimum 2 elements are required as 1 element in itself
+is always sorted.
+Quicksort is based on divide and conquer.
+If pivot is at end:
+Total comparisons for a sorted list= 1+2+3+4+...n-1+n=n(n+1)/2=O(n^2)
+Worst case of quicksort is found when list is already sorted.
+Even if list is sorted in descending order then time complexity is still O(n^2) but
+the difference is that partitioning is done alternately on right and left side in
+each pass.
+So if partitioning is done at the ends of the list then time complexity is O(n^2).
+Best case of quicksort is when partitioning is always done at the center. Best case
+time complexity is O(n*log n) because n comparisons are done log(n+1)-1 times.
+Average case time complexity of quicksort is O(n*log n).
+If We try to improve quicksort by changing the pivot element from the end to 
+the middle then for sorted case time complexity is O(n*log n) (best case) and 
+if the list is partitioned at the end then worst case is O(n^2).
+We can also choose any random element as pivot and it is called randomized quicksort.
+For quicksort irrespective of the pivot best case remains O(n*log n)
+and worst case remains O(n^2).
+In selection sort we select a position and find the right element for it,
+in quicksort we select an element and find the right position for it.
+Quicksort is also called selection exchange sort or partition exchange sort.
+Quicksort is neither adaptive nor stable but is in-place.
+Partitioning is done in three ways:
+Naive partitioning uses O(N) extra space and although it is slow but quicksort implemented
+using this technique is stable.
+Lomuto partitioning always chooses the last element as the pivot and puts the pivot in the
+correct position unlike hoare's partitioning.It is unstable but uses O(1) space.
+Hoare's Partitioning is fastest but does not put the element in correct position and is
+not stable.
+Space Complexity:
+O(N) for worst case in recursion(recursion call stack)
+O(log n) for best case in recursion.
+Space Complexity is O(1) using iterative quicksort.
+Quicksort is faster than merge sort despite its O(N^2) worst case because of following reasons:
+1)In place(ignoring the recursion stack). Well Naive partitioning is not in place and uses an
+auxillary array.
+2)It is cache friendly as we only use a single array and there is high chance that array
+lies in cache. Merge sort is not cache friendly.
+3)Quicksort uses tail recursion unlike merge sort. So quicksort can be converted to a loop.
+
+Hoare's partition is usually used in practice in a randomized quicksort where a random pivot is
+picked so that there is no worst case( as in hoare and lomuto partition we pick the first and 
+last element always and this leads to O(N^2) worst case for sorted lists). So a random element
+is picked using p=random(l,r) and since standard hoare picks the left element 
+as pivot, we need to send the element at p to index l(left) so that hoare's 
+partitioning can pick it as pivot. We do this usingswap(arr[l],arr[p]). Then hoare's partition
+returns the index pi around which partitioning is done.p is just the element that is the pivot.
+While pi is partitioning index returned by hoare.
+
+Quicksort can be easily optimized in terms of space using tail call elimination. This is
+done using a goto statement.
+
+Merge Sort:
+It is based on divide and conquer algorithm.
+Types of merging:
+1) Merging 2 lists like A= 0,1,2,30,45 ; B= 10,20,40 
+Merging in this case takes O(m+n) time where m and sizes of these lists.
+
+2) Merging 2 List in Single array like A=2,5,8,12,3,6,7,8
+
+3) Merging multiple List like A= 1,5 B=2,3 C=4,6 D=5,8
+This is called 4 way merging where now we compare 4 elements from 4 lists unlike 2
+elements in the above 2 cases. The merging process remains the same.
+We can also first merge A and B into E ; C and D into F and then merge E and F into
+a single list. This would then then be 2 way merging as at a time 2 lists are merged.
+Merge sort uses 2-way merging.
+m-way merging means merging m sorted lists into a single sorted list.
+When one list finishes the elements from the other list are copied using for loop.
+Merging is not in-place, we need an extra array for merging.
+Merge sort can be implemented both iteratively and recursively.
+A=8,3,7,4,9,2,6,5 here A is an array of 8 elements and we have to sort it.
+Now to apply merge sort we say that there are 8 lists in the array A each with 1 element.
+Number of passes in iterative merge sort= log n [we do not talk abt no. of passes in recursion]
+Time complexity of merge sort= O(n*log n)( this is the best,worst and average case)
+Recursive merging is done in post order traversal fashion.
+Recursive merge sort obviously uses a stack of height log n.
+Space complexity of recursive merge sort is O(2n+ log n)=O(n)
+where 2n is the sum of sizes of the main array and the auxillary array used in merge 
+function and log n is the size of stack. So merge sort uses n+log n extra space.
+Merge sort is stable.
+Well suited for linked lists. Works in O(1) auxillary space.
+In general for arrays, Quicksort outperforms merge sort.
+
+Count sort: 
+size of count array should be equal to largest element + 1.
+Initialise the array with 0 or -1.
+Increment the value at index if value of an element is equal to index. So count
+sort actually counts the occurence of an element.
+Then write back to the original array keeping in mind the duplicates. After writing once
+decrement the value at index of count array.
+Let the size of main array and count array(auxillary array) be n and m.
+Time complexity= O(n) since we scan through both the arrays.
+This is a space ineffecient algo and unless the largest element is small we cannot
+use this sorting technique.
+
+
+Bucket/bin sort:
+We take an array named bins of type pointer and size of bins array should 
+be equal to largest element + 1.
+We initialize the pointers to NULL.
+bins array is basically an array of linked lists where each bin(an element in the array
+bins) is actually a linked list.
+Time complexity= O(n) (same as count sort)
+Space complexity= O(n)
+While deleting from bins array nested while loop is used but still time complexity is
+O(n) as total n elements are deleted.( also inner while loop is not always executed)
+This is similar to ammortized analysis.
+Bin sort is space inefficient similar to count sort.
+

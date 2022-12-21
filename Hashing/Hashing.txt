@@ -1,0 +1,95 @@
+1)Hashing is used for searching.
+2) The keys are stored in a hash array in index equal to value of key like count sort.
+3)Hashing takes constant time. It is the fastest searching method.
+4) Hashing is space inefficient like count sort because to store element 100
+we will need hash array of size 101.
+Mathematical model for hashing
+The keys are assumed to be a set called keyspace. The keys are to be stored in hashtable.
+The keys are mapped onto the hashtable. So this is just like keyspace is the domain and
+hashtable is the range. Mapping domain upon range is a relation or function.
+There are four relational mappings:
+1. one-one
+2. one-many
+3. many-one
+4. many-many
+
+One-one mapping:
+Every key in keyspace is mapped to one index in hashtable. The function used is
+h(x)=x where h(x) denotes the hash table and x is the value of the key.
+So we say that we are not storing the elements directly we are using the hash function
+which is giving us the index and we are storing the key at that index given by
+hash function. So when we wish to search for a key we should ask the hash function for
+the index.
+Our function h(x)=x is called ideal hashing because searching insertion and deletion
+are O(1) operations.
+Drawback of ideal hashing is that space required is very huge.
+Hash function is responsible for this drawback as it provides the index.
+To make hash function space effecient we may use modulus hash function like
+h(x)=x%10. Using this function hash table will be of size 10 only(0...9).
+So key 15 will be stored at h(5)
+Drawback of hash function:
+Suppose now there is a key 25 it will also be stored at index h(5) given by mod function
+but 15 is already stored there. So now two keys are mapped onto the same index and this
+is called collision. Also since two elements from keyspace are stored at same index
+of hashtable this is many-one mapping.
+When you modify ideal hash function to some other function they there is a drawback of 
+collision.
+There are 2 major ways to solve this problem of collision:
+1)open hashing
+2)closed hashing
+In closed hashing we do not increase the space of the hashtable.
+In open hashing we consume extra space beyond the hashtable.
+In open hashing the method is chaining.
+In closed hashing we have three methods which use open addressing.
+	open addressing
+		1. Linear Probing
+		2. Quadratic Probing
+		3. Double hashing
+Open addressing: If two or more keys are mapped at the same index, meaning there is 
+collision as in the above case 25 is given index 5 by hash function where already 15
+is stored then in this case we will not store 25 at index given by hash function(5)
+but at any other free index in the hashtable.
+
+Chaining:
+It is used to resolve collision and comes under open hashing.
+In chaining the hashtable is an array of pointers to linked lists. Meaning at each 
+element of the hashtable array is a pointer(head pointer) which points to the first
+element of the linked list pointed to by pointer. Make the pointers of hashtable
+Null during intitialization.
+The keys inside the linked list must be in sorted order. Example if 16 is mapped to index 6 of hashtable by modulus hash
+function h(x)=x%10 then at index 6 lies a pointer pointing to a linked list whose first
+element is 16. Now if 6 is taken as key from keyspace and mapped to index 6 using 
+the same hash function then linked list pointed to by pointer at index 6 will be
+6->16(sorted order).
+Now as many elements can be inserted in the hashtable as there is dynamic memory
+available.
+Suppose there are n=100 keys inserted in a hashtable of size=10 pointers pointing to
+10 linked lists.
+We define loading factor(lambda or sometimes alpha)= n/size=10(in this case).
+Analysis of hashing is done based on loading factor.
+So with this loading factor of 10 we are assuming that the 100 keys are uniformly
+distributed at each location of the hashtable( More correctly at each linked list 
+pointed to by pointers of hashtable). So we are assuming that each linked list has 
+around 10 keys.
+Average Time taken for successful search:
+Firstly we use the hash function to get the index and this takes constant time.
+Now after getting the index we search the linked list pointed to by pointer h(index).
+We assume that at an average the linked list will have lambda(loading factor) number
+of elements and the element to be searched at an average will be found in the middle
+of the linked list. So Average Time taken for successful search will be
+T= O(1+(lambda/2)).
+Time for unsuccessful search:
+Explanation same as above.Hashing function will give index in O(1) time and then we may
+need to traverse the whole linked list containing lambda elements at an average.
+So average time for unsuccessful search is T= O(1+lambda).
+The hash function h(x)=x%10 will generate indices based on the one's place of x.
+To generate indices based on the ten's place of x we may use hash function
+h(x)=(x/10)%10.
+Again hashtable will have size 10 in this case.
+Select the proper hash function so that analysis can be done based on lambda.
+Example keys are 5, 25,35,75,85,95,135,145 then all these will be mapped at index 5
+using hash function h(x)=x%10. So in this case the programmer needs to choose a better
+hash function such that the keys are uniformly distributed and the analysis can be 
+done based on lambda.
+So to define a proper hash function the programmer must have an idea of the keys
+that are going to be inserted in the hashtable.

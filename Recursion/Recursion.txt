@@ -1,0 +1,6 @@
+Types of recursion:
+1)Tail recursion
+2)Head recursion
+3)Tree recursion
+4)Indirect recursion
+5)Nested recursion

@@ -1,0 +1,3 @@
+Hashing is mainly used to implement dictionaries where you have key value pairs and sets
+where you only have keys.
+Great thing about hashing is that it provides search insert delete in O(1) on average.

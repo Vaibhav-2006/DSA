@@ -1,0 +1,99 @@
+int a[10]={1}
+sets a[0]=1 and all the other elements to 0
+int a[10]={0}
+sets all elements to 0
+int a[10];
+sets all elements to random garbage values.
+
+1)arrays store elements of same type in contiguous memory locations.
+Advantages of arrays:
+1)Random access. Arrays store the address of element at index 0 and since all elements
+are stored in contiguous memory locations, you can get any i-th element is O(1) time.
+2)Cache Friendliness: Its very likely that your processor will pre fetch the elements of
+the array in the cache so that they can be used by different processes. Prefetching does not
+work for linked lists and bsts etc as their nodes are stored in different locations.
+
+In particular, arrays are contiguous memory blocks, so large chunks of them will be loaded
+into the cache upon first access. This makes it comparatively quick to access future elements
+of the array.
+
+Arrays are of two types:
+1) fixed size arrays which do not allow elements to be added beyond their capacity.
+int arr[100], int arr[n], int *arr= new int[n] etc...
+In c/c++ memory is allocated in stack or heap.
+Heap memory is used to allocate memory dynamically.
+int *arr= new int[n], this is heap allocated array.
+This is different from dynamic arrays which are resizing arrays.
+2)Dynamic arrays are the ones which automatically resize themselves upon addition of more 
+elements.
+vectors in c++ is a dynamic array in which you do not need to know the size of array and
+insertion is at end of array in O(1) time. These arrays double in size when they are
+full.
+They do not actually double but a new vector of double the size is created and values
+from first vector are copied into the second vectror. First vector is then deleted.
+It is recommended to use dynamic arrays as they have every feature of fixed size arrays too.
+You can use them like a fixed size array too by using a constructor and mentioning the size.
+Advantages of vectors:
+1)dynamic size.
+2)Rich library functions.
+3)Easy to know size using size().
+4) no need to pass size to functions.
+In arrays to know size of array you have to do:
+int n= sizeof (arr)/sizeof(arr[0])
+and while passing to a function you have to pass the size
+of arrays as size of array cannot be known by function using above formula:
+int sum(int *arr or arr[], int n)
+if you try to know the size of array inside function sum rather than passing it as n
+you will get the wrong ans as inside the function sum arr is just a pointer with size 8.
+
+In vectors you can easily know the size using size() function.
+5) can be returned from a function.
+first look at returning arrys:
+int *fun()
+{
+int arr[10];
+return arr;
+} will give an error as arr is locally created in stack for fun function and is destroyed 
+when the function ends. So this memory address cannot be returned.
+
+However you can return an array which is created in heap like int *arr=new int[5];
+In vectors you can easily return a locally created vector from a function.
+
+vector<int> fun ()
+{
+vector<int> v;
+return v;
+}
+In this case you are not actually returning an address but an object v of class vector.
+6) Default initialized with default values:
+if you create a vector of size 100 and type int then all elements will be 0 by default and 
+in a vector of bool type all elements will be false and in vector of float type all elements
+will be 0.
+You can create a vector of size Size with default value Value using:
+vector<int> v(Size,Value);
+7)We can copy a vector to other.
+v1=v2;
+There are many more advantages of vectors.
+
+Searching in an unsorted array takes O(n) time and the worst case is when element is not
+found. In a sorted list we can use binary search and thus searching O(log n) time.
+
+Insertion in the middle of a fixed size array takes O(n) time because of shifting of elements.
+Insertion at end provided there is space available takes O(1) time.
+
+Insertion in vector at end.(push_back)
+For first n inserts at end: O(1) time for every insert
+Now when vector gets full and one more insertion is needed it copies its elements 
+to a vector of double its size so this copying takes theta(n) time. 
+Then the previous vector is deleted.
+
+So O(1)+O(1)+O(1)+...for n inserts..+ theta(n) / n+1 takes average or ammortized O(1) time.
+If you have some real time application where you do not want any insert to be theta(n) time
+then do not use vectors.
+
+Deletion is arrays:
+Deletion needs O(n) time in arrays. If deletion is done for last element then using an
+if condition like if(arr[n-1]==element) we can make deletion O(1) in best case when element is
+present at n-1 index and thus no shirfting is required.
+
+Accessing and modifying i-th element takes O(1) time.(Random access property)

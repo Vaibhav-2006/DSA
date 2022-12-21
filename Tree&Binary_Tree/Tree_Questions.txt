@@ -1,0 +1,28 @@
+Your function must return a boolean true if the tree is a binary search tree. 
+Otherwise, it must return false.
+THERE ARE BETTER SOLUTIONS AVAILABLE ON GFG.
+bool checkBST(Node* root) {
+        static Node *prev=NULL;
+        if (root){  
+        if (!checkBST(root->left))  
+        return false;  
+        if (prev != NULL && root->data <= prev->data)  
+        return false;  
+        prev = root;  
+        return checkBST(root->right);  
+      }  
+   return true;    
+}
+
+Return the a pointer to the node that is the lowest common ancestor of v1 and v2.
+
+
+Node *lca(Node *root, int v1,int v2) {
+        if((v1>=root->data&&v2<=root->data)||(v2>=root->data&&v1<=root->data))
+        return root;
+        else if(v1>root->data&&v2>root->data)
+        return lca(root->right,v1,v2);
+        else if(v1<root->data&&v2<root->data)
+        return lca(root->left,v1,v2);
+        return NULL;
+    }

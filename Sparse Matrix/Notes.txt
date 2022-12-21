@@ -1,0 +1,39 @@
+Sparse matric is a matrix in which there are mostly zero values.
+In statistics and surveys data may be represented as a matrix and there may be
+many zero values, if so then we may be wasting a lot of space and processing time 
+by using a sparse matrix. We want to store this matrix and less space so that even
+the processing is low. So we should only store the non zero elements.
+There are 2 ways to do this:
+1. Coordinate list/ 3-column representation
+In this method, to represent every non-zero element we need 3 things, its row number,
+its column number and the element itself(its value).
+So we will make a list of tuples in which we have tuples with 3 values as 
+mentioned above. We can call this list a coordinate list.
+The coordinate list thus has 3 columns which are row number, column number and value
+of element. The coordinate list has n+1 rows to store the information about n non zero
+elements and it has the first row to store the number of rows in the original sparse 
+matrix, the number of columns in the original sparse matrix and the number of 
+non zero elements.
+
+
+2.Compressed sparse rows
+In this method, we have three arrays to represent a sparse matrix.
+The first array is used to store the non zero elements in the same order in which they
+are present in the sparse matrix. The size of array is obviously equal to the number 
+of non-zero elements.
+Now we need an array IA for rows. The first element of this array IA[0]=0 if our indices
+in the sparse matrix are starting from zero. The second element IA[1]= number of
+elements in the 1st row of the sparse matrix. The third element IA[2]=the sum of elements
+in the 1st and 2nd row of the sparse matrix such that no. of elements in the nth row is
+difference of element IA[n] and IA[n-1]. The size of array is obviously 
+equal to the number of rows in sparse matrix+1.
+The third array is JA for column values. It simply stores the column number of the
+non zero elements. The size of array is obviously equal to the number 
+of non-zero elements.
+
+In addition of sparse matrix program use operator overloading.
+
+Also polynomial representation, evaluation and addition can be done by taking two
+structs. One named struct Term which has the coeffecient and exponent of a term in 
+the polynomial. Another named polynomial having number of terms and and a pointer
+of type struct Term so that an array of terms can be used to represent a polynomial.

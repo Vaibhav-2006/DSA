@@ -1,0 +1,96 @@
+Trees are used to represent file system architecture, hierarchies like structure in an office.
+Arrays and linked lists cannot be used for this as they are linear.
+Also XML/HTML content is read as tree. In general a language with tags and then subtags
+are read as trees.
+Tree is a collection of nodes and edges.
+We can also say that tree is a collection of nodes among which one is taken as root
+and the rest of the nodes are divided among disjoint subsets. And each subset is a
+tree or subtree again. The very first element at top of a tree is called root.
+Siblings are children of same parent.
+-------------------------STUDY ABOUT TREE TERMINOLOGIES--------------------------------------------------
+1)In a tree if there are n nodes then there will be n-1 edges as the root does not 
+have an edge coming from the parent.
+2) No. of unlabelled binary trees that can be made with n nodes is T(n)=(2*n)^Cn/(n+1).
+It is called catalan number. For n=5, 42 unlabelled binary tress can be made. No. of
+labelled binary trees that can be made is T(n)= n! * (2*n)^Cn/(n+1)
+3) No. of binary trees of max height for n nodes will be 2^(n-1).
+4) For a binary tree of height h, the minimum no. of nodes is h+1 and the 
+max no. of nodes is 2^(h+1) - 1.
+5) Max No. of nodes at height h is 2^h. No. of total nodes aboves 2^h nodes at 
+height h is  2^h-1. At height h=2, there are max 4 nodes and above 4 nodes there 
+are 3 nodes so total 2^(h+1)-1=7 nodes in the tree.
+6) Max height of a binary tree with n nodes is h=n-1. 
+Min height is h=log(base 2)(n+1) -1.
+7) Leaf nodes( external nodes, nodes with degree 0, nodes with no children), non leaf
+nodes ( internal nodes,nodes with degree greater than 0,nodes with 1 or 2 children in
+a binary tree). Nodes with degree(0)= nodes with degree(2) + 1.
+8) Strict/ Proper binary trees have nodes with 0 or 2 children only. 
+9) In a strict binary tree of height h, the minimum no. of nodes is 2*h+1 while
+max no. of nodes is 2^(h+1)-1.
+10) In a strict binary tree of n nodes, the minimum height is h=log(base 2)(n+1) -1 
+while the max height is (n-1)/2.
+11) Relationship between leaf nodes and non leaf nodes in a strict binary tree:
+Using point 7 as strict binary tree is a binary tree and also since strict binary tree 
+does not have a degree 1 node therefore: 
+external nodes(degree 0)= internal nodes( obviously degree 2 only) +1.
+NOTE:Just by looking at a tree we cannot say that it is a 2-ary or a 3-ary tree.
+Degree is pre determined for a tree. We can only talk about the degree of a node.
+But when we are coding the tree we are aware of it degree(as we know how many children
+each node can have). 
+12) m-ary trees can have nodes with degree 0 to m and strict m-ary trees can have
+nodes with degree 0 or m only.
+13) In a strict m-ary tree with height h, the minimum no. of nodes n=m*h+1, while 
+the max no. of nodes n= (m^(h+1)-1)/(m-1).
+14)In a strict m-ary tree with n nodes , the max height h=(n-1)/m, while 
+the minimum height h= log(base m)(n*(m-1)+1)-1.
+15) In a strict m-ary tree, external nodes= (m-1)*internal nodes+1; obviously internal 
+nodes are of degree m and external nodes are of degree 0.
+16) In a binary tree if i is the 1 based index of a node then 2*i and 2*i+1 are
+the left child and right child indices respectively provided they lie within 
+the array size. Similarly floor of(i/2) is the parent of i.(array representation of tree)
+17) In linked representation of binary tree if there are n nodes then there 
+are n+1 null pointers. 
+18) In full binary tree of height h there are max nodes that is 2^(h+1) -1 nodes.
+19) If a binary tree is represented in an array and there are no spaces in between
+then it is a complete binary tree.
+20) Complete binary tree: A complete binary tree of height h will be a full binary tree upto
+h-1 height and in the last level the elements will be filled from left to right
+without skipping any elements in between.
+NOTE: An incomplete binary tree is not suitable for array representation as there are gaps
+in the array which correspond to no node. An incomplete binary tree is best represented using
+a linked representation. Heaps are complete trees and are thus represented using arrays.
+21) A full binary tree is always a complete binary tree but vice versa is not true.
+22) No. of null pointers in a binary tree of n nodes will be n+1, example in a binary tree
+of 7 nodes there will be 8 null pointers.
+NOTE: The first element of pre order and the last element of post order will always be 
+same(root).
+23) Time complexity of Traversal in binary tree in O(n) because if there are n nodes then
+2n+1 calls are made recursively( n for nodes and n+1 for null pointers).
+24)Height of stack in traversal is h+2 (0 based height) where h can range from order of log n(min height)
+to order of n(max height) as in the case of a skewed tree. So we say that height of function
+call stacks is O(h).
+25) Tree traversal can be done iteratively using a stack and loop. Imp->Post order.
+Also Level Order traversal is done using a queue in much the same way a tree is created.
+26) Catalan number of trees can be generated with a given traversal. example:
+if ABC is given as preorder traversal then 5 trees can be generated.
+27) If preorder and postorder is given then still a unique tree cannot be generated.
+28) We can get a unique tree if preorder+inorder or postorder+inorder is given.
+So inorder is must.
+29) Conditions to find nodes with:
+if(p){
+x=count(p->lchild)
+y=count(p->rchild)
+	1) deg 2 if(p->lchild&&p->rchild)
+	2) deg 0 if(!p->lchild&&!p->rchild)
+	3) deg 2 or 1 if(p->lchild||p->rchild)
+	4) deg 1 if(p->lchild ^ p->rchild) 
+	return x+y+1
+	else return x+y;}
+return 0;
+30)if(p){
+x=count(p->lchild)
+y=count(p->rchild)
+return x+y+p->data
+}
+return 0;
+gives sum of all elements.
